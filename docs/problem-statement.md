@@ -20,7 +20,7 @@ Organizations: hospitals and clinics, especially busy and under-staffed ones.
 - Guo et al. (2017): modern neural networks are poorly calibrated, so their confidence does not match their accuracy.
 
 ## Problem statement (3 to 5 sentences)
-[Combine your three answers above into one short paragraph.]
+Doctors and radiologist who read chest x-rays by judging heart size mainly by eye, so the results depends on the reader's experience and mild cardiomegaly can be missed. Existing deep learning models for chest x-rays often give overconfident predictions without showing why they made a decision or when they might be wrong. Many of these models are also tested only on the dataset they were trained on, so they may perform worse on images from other hospitals. This matters because cardiomegaly i as key sign of heart disease and a missed or wrongly trusted result can be delay treatment.
 
 ## Scope
 **In scope:**
