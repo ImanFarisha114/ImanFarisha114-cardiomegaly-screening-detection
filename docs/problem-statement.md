@@ -15,9 +15,11 @@ Organizations: hospitals and clinics, especially busy and under-staffed ones.
 - If doctors cannot tell when an AI results is unreliable, the may trust a wrong answer or ignore the correct answer.
 
 ## Evidence
-- Lee et al. (2024): chest X-ray interpretation varies between readers, and mild cardiomegaly can be missed.
-- Yanar et al. (2025): cardiomegaly is a key radiological indicator of cardiovascular conditions.
-- Guo et al. (2017): modern neural networks are poorly calibrated, so their confidence does not match their accuracy.
+- K.-H. Lee et al. (2024): visual interpretation of chest X-rays for cardiomegaly is subjective, and mild cases may be missed.
+- Kufel et al. (2024): automated CTR measurement and deep learning results can be affected by conditions such as scoliosis and lung consolidation.
+- Sambyal et al. (2023): confidence calibration remains under-explored in medical image classification, so high accuracy does not guarantee reliable confidence scores.
+- Zhang et al. (2024): saliency-based heatmaps showed limited sensitivity and robustness when explaining chest X-ray predictions.
+- Ahluwalia et al. (2023): four chest X-ray classifiers tested on 197,540 PA chest X-rays from a Canadian hospital network reached only 68% to 77% accuracy, with lower sensitivity for findings including cardiomegaly. This is the real example supporting the problem statement.
 
 ## Problem statement (3 to 5 sentences)
 Doctors and radiologist who read chest x-rays by judging heart size mainly by eye, so the results depends on the reader's experience and mild cardiomegaly can be missed. Existing deep learning models for chest x-rays often give overconfident predictions without showing why they made a decision or when they might be wrong. Many of these models are also tested only on the dataset they were trained on, so they may perform worse on images from other hospitals. This matters because cardiomegaly i as key sign of heart disease and a missed or wrongly trusted result can be delay treatment.
