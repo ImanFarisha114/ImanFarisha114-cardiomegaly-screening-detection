@@ -1,0 +1,47 @@
+# Part C Outline: Specialized Technology
+
+## C1 Concepts
+- What computer vision is: computers understanding images; moved from hand-written rules to deep learning
+- Three common tasks: classification, object detection, segmentation
+  - This project uses classification (cardiomegaly vs normal) and segmentation (heart and lungs for CTR)
+- Key concepts
+  1. An image is a grid of numbers (0 = black, 255 = white); preprocessing: resize, normalise, CLAHE
+  2. CNN: kernels slide over the image; early layers find edges, deeper layers find shapes such as the heart border
+  3. Vision Transformer: image cut into patches; self-attention compares every patch with the others
+  4. Supervised learning: loss function and backpropagation update the weights
+  5. Output: sigmoid gives a probability; temperature scaling calibrates it; Grad-CAM shows a heatmap
+- Figure 1: flowchart of the screening system
+- Worked examples
+  - Convolution: vertical-edge kernel on a lung–heart border gives 570 (edge) vs 0 (no edge)
+  - Calibration: score 1.2 → probability 0.77 → after T = 1.5, 0.69 → below 0.70 threshold → sent for review
+  - CTR: 520 ÷ 940 ≈ 0.55 > 0.50 → enlarged heart
+
+## C2 Frameworks, models, methods and tools
+- Models
+  - ResNet-50: CNN with skip connections; main classifier
+  - Vision Transformer (ViT): second classifier, compared with ResNet-50
+  - U-Net: encoder–decoder that segments heart and lungs to measure CTR
+- Methods
+  - CLAHE: improves local contrast
+  - Grad-CAM: heatmap of regions that drove the prediction
+  - Temperature scaling: calibrates confidence using the validation set
+- Framework and tool
+  - PyTorch: build, train and test models on GPU
+  - OpenCV: load and prepare images, apply CLAHE, overlay heatmaps
+
+## C3 Fit to the problem
+- How it helps
+  - Same result for the same image: less subjective, fewer missed mild cases
+  - U-Net measures CTR automatically
+  - Calibrated confidence and Grad-CAM help clinicians decide when to trust a result
+  - External testing on VinDr-CXR checks performance on unseen data
+- Benefits: fast and consistent screening, several types of evidence, uncertain cases sent to a professional
+- Limitations and risks
+  - NIH labels taken automatically from reports, so some are wrong
+  - Lower performance on external data and under-represented groups
+  - A good-looking heatmap does not prove the prediction is correct
+  - Patient X-rays are sensitive: consent, anonymisation, secure storage
+- Alternative: rule-based CTR only (flag if CTR > 0.50)
+  - Simple, easy to understand, no cardiomegaly labels needed
+  - But depends on accurate borders, affected by scoliosis and consolidation, cannot show uncertainty
+- Choice: deep learning classifier as the main approach, CTR kept as a cross-check
